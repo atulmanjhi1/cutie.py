@@ -1,0 +1,7 @@
+PyMuPDF
+nltk
+io
+docx
+groq
+python-docx
+streamlit
