@@ -114,12 +114,12 @@ def summarize_key_points(key_points):
     for category, points in key_points.items():
         if points:
             summary.append(f"{category}: {points[0]}")
-        if len(summary) >= 5:
+        if len(summary) >= 8:
             break
 
     # Ensure the summary has exactly 5 elements
-    if len(summary) < 5:
-        summary += ["(Additional point not available)"] * (5 - len(summary))
+    if len(summary) < 8:
+        summary += ["(Additional point not available)"] * (8 - len(summary))
 
     return summary
 
