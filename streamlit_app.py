@@ -50,8 +50,8 @@ def extract_key_points(sentences):
     """
     Extracts key points such as education, experience, skills, certifications, and accomplishments from the sentences.
 
-    :param sentences: The list of preprocessed sentences.
-    :return: A dictionary containing key points.
+    param sentences: The list of preprocessed sentences.
+    return: A dictionary containing key points.
     """
     key_points = {
         "Education": [],
@@ -66,10 +66,10 @@ def extract_key_points(sentences):
 
     education_keywords = ["university", "college", "degree", "bachelor", "master", "phd", "course", "education"]
     experience_keywords = ["experience", "worked", "job", "position", "role", "company", "responsible", "managed"]
-    skills_keywords = ["skills", "proficient", "knowledge", "familiar", "expertise", "tools", "technologies"]
+    skills_keywords = ["skills", "proficient", "knowledge", "expertise", "tools", "technologies"]
     certifications_keywords = ["certified", "certification", "certificate", "accreditation"]
     accomplishments_keywords = ["accomplished", "achieved", "project", "successfully", "led", "improved", "award"]
-    project_keywords = ["Project", "Skills", ""]
+    project_keywords = ["Project", "Skills"]
     technical_skills_keywords = [
         "Python", "Java", "JavaScript", "C++", "SQL", "HTML", "CSS", "Machine Learning", "Artificial Intelligence",
         "Data Analysis", "Cloud Computing", "AWS", "Azure", "Google Cloud", "DevOps", "Docker", "Kubernetes", "Git",
