@@ -60,12 +60,12 @@ def extract_key_points(sentences):
         "Certifications": [],
         "Accomplishments": [],
         "Projects": [],
-        'technical_skills': [],
-        'project_management': []
+        "Technical_skills": [],
+        "Project_management": []
     }
 
     education_keywords = ["university", "college", "degree", "bachelor", "master", "phd", "course", "education"]
-    experience_keywords = ["experience", "worked", "job", "position", "role", "company", "responsible", "managed"]
+    experience_keywords = ["experience", "worked", "job", "position", "company", "managed"]
     skills_keywords = ["skills", "proficient", "knowledge", "expertise", "tools", "technologies"]
     certifications_keywords = ["certified", "certification", "certificate", "accreditation"]
     accomplishments_keywords = ["accomplished", "achieved", "project", "successfully", "led", "improved", "award"]
