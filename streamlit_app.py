@@ -69,16 +69,14 @@ def extract_key_points(sentences):
     skills_keywords = ["skills", "proficient", "knowledge", "expertise", "tools", "technologies"]
     certifications_keywords = ["certified", "certification", "certificate", "accreditation"]
     accomplishments_keywords = ["accomplished", "achieved", "project", "successfully", "led", "improved", "award"]
-    project_keywords = ["Project", "Skills"]
+    project_keywords = ["Project"]
     technical_skills_keywords = [
         "Python", "Java", "JavaScript", "C++", "SQL", "HTML", "CSS", "Machine Learning", "Artificial Intelligence",
         "Data Analysis", "Cloud Computing", "AWS", "Azure", "Google Cloud", "DevOps", "Docker", "Kubernetes", "Git",
         "Agile", "Scrum"
     ]
     project_management_keywords = [
-        "Project Planning", "Project Execution", "Risk Management", "Stakeholder Management", "Budgeting",
-        "Scheduling", "Resource Allocation", "Team Leadership", "Scrum Master", "Agile Methodologies",
-        "Waterfall Methodologies", "Kanban", "JIRA", "Trello", "Asana"
+        "ect planning", "Agile", "Communication", "Leadership", "Budgeted", "Change management", "Project management", "Teamwork", "Attention to detail", "Microsoft Access", "Planning", "Prioritization", "Risk management", "Analysis", "Business strategy", "Collaboration", "Data analysis", "Information Technology", "Organization", "Technical skills", "Analytical", "Assertive", "Conflict resolution"
     ]
 
     for sentence in sentences:
