@@ -64,11 +64,11 @@ def extract_key_points(sentences):
         "Project_management": []
     }
 
-    education_keywords = ["university", "college", "degree", "bachelor", "master", "phd", "course", "education"]
-    experience_keywords = ["experience", "worked", "job", "position", "company", "managed"]
-    skills_keywords = ["skills", "proficient", "knowledge", "expertise", "tools", "technologies"]
-    certifications_keywords = ["certified", "certification", "certificate", "accreditation"]
-    accomplishments_keywords = ["accomplished", "achieved", "project", "successfully", "led", "improved", "award"]
+    education_keywords = ["University", "College", "Degree", "Bachelor", "Master", "Phd", "Course", "Education"]
+    experience_keywords = ["Experience", "Worked", "Job", "Position", "Company", "Managed"]
+    skills_keywords = ["Skills", "Proficient", "Knowledge", "Expertise", "Tools", "Technologies"]
+    certifications_keywords = ["Ertified", "Certification", "Certificate", "Accreditation"]
+    accomplishments_keywords = ["Accomplished", "Achieved", "Project", "Successfully", "Led", "Improved", "Award"]
     project_keywords = ["Project"]
     technical_skills_keywords = [
         "Python", "Java", "JavaScript", "C++", "SQL", "HTML", "CSS", "Machine Learning", "Artificial Intelligence",
@@ -76,7 +76,7 @@ def extract_key_points(sentences):
         "Agile", "Scrum"
     ]
     project_management_keywords = [
-        "ect planning", "Agile", "Communication", "Leadership", "Budgeted", "Change management", "Project management", "Teamwork", "Attention to detail", "Microsoft Access", "Planning", "Prioritization", "Risk management", "Analysis", "Business strategy", "Collaboration", "Data analysis", "Information Technology", "Organization", "Technical skills", "Analytical", "Assertive", "Conflict resolution"
+        "Ect planning", "Agile", "Communication", "Leadership", "Budgeted", "Change Management", "Project Management", "Teamwork", "Microsoft Access", "Planning", "Prioritization", "Risk Management", "Analysis", "Business Strategy", "Collaboration", "Data Analysis", "Information Technology", "Organization", "Technical Skills", "Analytical", "Assertive", "Conflict Resolution"
     ]
 
     for sentence in sentences:
@@ -125,9 +125,9 @@ def ats_check(text, keywords):
     """
     Check the text against a list of keywords and calculate the ATS score.
 
-    :param text: The text to check.
-    :param keywords: A list of keywords to match.
-    :return: The ATS score.
+    param text: The text to check.
+    param keywords: A list of keywords to match.
+    return: The ATS score.
     """
     matches = []
     for keyword in keywords:
@@ -140,9 +140,9 @@ def generate_content(prompt, context):
     """
     Generate content using the Groq API.
 
-    :param prompt: The prompt to generate content.
-    :param context: The context to provide to the model.
-    :return: The generated content.
+    param prompt: The prompt to generate content.
+    param context: The context to provide to the model.
+    return: The generated content.
     """
     client = Groq(api_key=("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"))
     chat_completion = client.chat.completions.create(
