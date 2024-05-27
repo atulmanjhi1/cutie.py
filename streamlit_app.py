@@ -16,10 +16,10 @@ def extract_text_from_pdf(pdf_file):
     """
     Extracts text from a PDF file.
 
-    :param pdf_file: A file-like object containing the PDF.
-    :return: A string containing the extracted text.
+    param pdf_file: A file-like object containing the PDF.
+    return: A string containing the extracted text.
     """
-    document = fitz.open(stream=pdf_file, filetype="pdf")
+    document = fitz.open(stream=pdf_file, filetype="pdf","word")
     text = ""
 
     for page_num in range(len(document)):
@@ -205,7 +205,7 @@ def main():
 
         # ATS Check
         if st.button("ATS Check"):
-            keywords = ['Python', 'Data Analysis', 'Machine Learning', 'Deep Learning', 'NLP', 'AI', 'SQL', 'Power BI']  # Example keywords
+            keywords = ['Python', 'SQL', 'Power BI', 'Data Analysis', 'Data Science', 'Machine Learning', 'Deep Learning', 'NLP', 'AI']  # Example keywords
             ats_score, matched_keywords = ats_check(pdf_text, keywords)
             st.write(f"ATS Score: {ats_score}%")
             st.write(f"Matched Keywords: {', '.join(matched_keywords)}")
