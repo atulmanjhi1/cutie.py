@@ -156,7 +156,7 @@ def generate_content(prompt, context):
                 "content": prompt,
             }
         ],
-        model="llama3-70b-8192",
+        model="llama3-70b-8192"
     )
     return chat_completion.choices[0].message.content
 
@@ -164,8 +164,8 @@ def create_docx(text):
     """
     Create a DOCX file with the extracted text right-aligned.
 
-    :param text: The text to include in the DOCX file.
-    :return: A BytesIO object containing the DOCX file.
+    param text: The text to include in the DOCX file.
+    return: A BytesIO object containing the DOCX file.
     """
     doc = Document()
     paragraph = doc.add_paragraph(text)
@@ -205,7 +205,7 @@ def main():
 
         # ATS Check
         if st.button("ATS Check"):
-            keywords = ['Python', 'Data Analysis', 'Machine Learning']  # Example keywords
+            keywords = ['Python', 'Data Analysis', 'Machine Learning', 'Deep Learning', 'NLP', 'AI', 'SQL', 'Power BI']  # Example keywords
             ats_score, matched_keywords = ats_check(pdf_text, keywords)
             st.write(f"ATS Score: {ats_score}%")
             st.write(f"Matched Keywords: {', '.join(matched_keywords)}")
@@ -223,7 +223,7 @@ def main():
         # User input for chatbot
         st.subheader("Chatbot Comparison")
         user_input = st.text_input("Ask you:")
-        submit_button = st.button("Send")
+        submit_button = st.button("Submit")
 
         if submit_button and user_input:
             context = f"Summary: {', '.join(summary)}\nFull Text: {pdf_text[:500]}..." if summary else f"Full Text: {pdf_text[:500]}..."
