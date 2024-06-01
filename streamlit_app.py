@@ -16,11 +16,11 @@ def extract_text_from_pdf(pdf_file):
     """
     Extracts text from a PDF file.
 
-    param pdf_file: A file-like object containing the PDF.
-    return: A string containing the extracted text.
+    :param pdf_file: A file-like object containing the PDF.
+    :return: A string containing the extracted text.
     """
-  document = fitz.open(stream=pdf_file, filetype="pdf", stream_type="word")
-    text = " "
+    document = fitz.open(stream=pdf_file, filetype="pdf")
+    text = ""
 
     for page_num in range(len(document)):
         page = document.load_page(page_num)
@@ -50,8 +50,8 @@ def extract_key_points(sentences):
     """
     Extracts key points such as education, experience, skills, certifications, and accomplishments from the sentences.
 
-    param sentences: The list of preprocessed sentences.
-    return: A dictionary containing key points.
+    :param sentences: The list of preprocessed sentences.
+    :return: A dictionary containing key points.
     """
     key_points = {
         "Education": [],
@@ -60,23 +60,25 @@ def extract_key_points(sentences):
         "Certifications": [],
         "Accomplishments": [],
         "Projects": [],
-        "Technical_skills": [],
-        "Project_management": []
+        'technical_skills': [],
+        'project_management': []
     }
 
-    education_keywords = ["University", "College", "Degree", "Bachelor", "Master", "Phd", "Course", "Education"]
-    experience_keywords = ["Experience", "Worked", "Job", "Position", "Company", "Managed"]
-    skills_keywords = ["Skills", "Proficient", "Knowledge", "Expertise", "Tools", "Technologies"]
-    certifications_keywords = ["Ertified", "Certification", "Certificate", "Accreditation"]
-    accomplishments_keywords = ["Accomplished", "Achieved", "Project", "Successfully", "Led", "Improved", "Award"]
-    project_keywords = ["Project"]
+    education_keywords = ["university", "college", "degree", "bachelor", "master", "phd", "course", "education"]
+    experience_keywords = ["experience", "worked", "job", "position", "role", "company", "responsible", "manager"]
+    skills_keywords = ["skills", "proficient", "knowledge", "familiar", "expertise", "tools", "technologies"]
+    certifications_keywords = ["certified", "certification", "certificate", "accreditation"]
+    accomplishments_keywords = ["accomplished", "achieved", "project", "successfully", "led", "improved", "award"]
+    project_keywords = ["Project", "Skills", ""]
     technical_skills_keywords = [
         "Python", "Java", "JavaScript", "C++", "SQL", "HTML", "CSS", "Machine Learning", "Artificial Intelligence",
         "Data Analysis", "Cloud Computing", "AWS", "Azure", "Google Cloud", "DevOps", "Docker", "Kubernetes", "Git",
         "Agile", "Scrum"
     ]
     project_management_keywords = [
-        "Ect planning", "Agile", "Communication", "Leadership", "Budgeted", "Change Management", "Project Management", "Teamwork", "Microsoft Access", "Planning", "Prioritization", "Risk Management", "Analysis", "Business Strategy", "Collaboration", "Data Analysis", "Information Technology", "Organization", "Technical Skills", "Analytical", "Assertive", "Conflict Resolution"
+        "Project Planning", "Project Execution", "Risk Management", "Stakeholder Management", "Budgeting",
+        "Scheduling", "Resource Allocation", "Team Leadership", "Scrum Master", "Agile Methodologies",
+        "Waterfall Methodologies", "Kanban", "JIRA", "Trello", "Asana"
     ]
 
     for sentence in sentences:
@@ -112,12 +114,12 @@ def summarize_key_points(key_points):
     for category, points in key_points.items():
         if points:
             summary.append(f"{category}: {points[0]}")
-        if len(summary) >= 8:
+        if len(summary) >= 5:
             break
 
     # Ensure the summary has exactly 5 elements
-    if len(summary) < 8:
-        summary += ["(Additional point not available)"] * (8 - len(summary))
+    if len(summary) < 5:
+        summary += ["(Additional point not available)"] * (5 - len(summary))
 
     return summary
 
@@ -125,9 +127,9 @@ def ats_check(text, keywords):
     """
     Check the text against a list of keywords and calculate the ATS score.
 
-    param text: The text to check.
-    param keywords: A list of keywords to match.
-    return: The ATS score.
+    :param text: The text to check.
+    :param keywords: A list of keywords to match.
+    :return: The ATS score.
     """
     matches = []
     for keyword in keywords:
@@ -140,9 +142,9 @@ def generate_content(prompt, context):
     """
     Generate content using the Groq API.
 
-    param prompt: The prompt to generate content.
-    param context: The context to provide to the model.
-    return: The generated content.
+    :param prompt: The prompt to generate content.
+    :param context: The context to provide to the model.
+    :return: The generated content.
     """
     client = Groq(api_key=("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"))
     chat_completion = client.chat.completions.create(
@@ -156,7 +158,7 @@ def generate_content(prompt, context):
                 "content": prompt,
             }
         ],
-        model="llama3-70b-8192"
+        model="llama3-70b-8192",
     )
     return chat_completion.choices[0].message.content
 
@@ -164,8 +166,8 @@ def create_docx(text):
     """
     Create a DOCX file with the extracted text right-aligned.
 
-    param text: The text to include in the DOCX file.
-    return: A BytesIO object containing the DOCX file.
+    :param text: The text to include in the DOCX file.
+    :return: A BytesIO object containing the DOCX file.
     """
     doc = Document()
     paragraph = doc.add_paragraph(text)
@@ -205,7 +207,7 @@ def main():
 
         # ATS Check
         if st.button("ATS Check"):
-            keywords = ['Python', 'SQL', 'Power BI', 'Data Analysis', 'Data Science', 'Machine Learning', 'Deep Learning', 'NLP', 'AI']  # Example keywords
+            keywords = ['Python', 'Data Analysis', 'Machine Learning']  # Example keywords
             ats_score, matched_keywords = ats_check(pdf_text, keywords)
             st.write(f"ATS Score: {ats_score}%")
             st.write(f"Matched Keywords: {', '.join(matched_keywords)}")
@@ -223,7 +225,7 @@ def main():
         # User input for chatbot
         st.subheader("Chatbot Comparison")
         user_input = st.text_input("Ask you:")
-        submit_button = st.button("Submit")
+        submit_button = st.button("Send")
 
         if submit_button and user_input:
             context = f"Summary: {', '.join(summary)}\nFull Text: {pdf_text[:500]}..." if summary else f"Full Text: {pdf_text[:500]}..."
