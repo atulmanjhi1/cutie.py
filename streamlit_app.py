@@ -20,7 +20,7 @@ def extract_text_from_pdf(pdf_file):
     return: A string containing the extracted text.
     """
     document = fitz.open(stream=pdf_file, filetype="pdf","word")
-    text = ""
+    text = " "
 
     for page_num in range(len(document)):
         page = document.load_page(page_num)
